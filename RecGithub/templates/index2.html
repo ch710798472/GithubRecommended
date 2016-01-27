@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <title>Github rank</title>
+    <meta http-equiv='Content-Type' content='text/html'; charset='utf-8'/> <meta http-equiv='Content-Language' content = 'zh-cn'/>
+    <meta name="keywords" content ="github rank"/>
+    <meta name="author" content="ch"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="make data simple">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <style type="text/css">
+/* Sticky footer styles
+-------------------------------------------------- */
+html,
+body {
+    height: 100%;
+/* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+/* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 60px;
+}
+#footer {
+    background-color: #f5f5f5;
+}
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+#wrap > .container {
+    padding-top: 60px;
+}
+.container .credit {
+    margin: 20px 0;
+}
+code {
+    font-size: 80%;
+}
+    </style>
+</head>
+<body >
+<div id="wrap">
+    <h1 class="text-center"> Github Rank </h1>
+    <div class="container">
+        <div class="content">
+                <ul id="myTab" class="nav nav-pills">
+                    <li class="active"><a href="#chinarank" onclick="show_tables()">China Rank</a></li>
+                    <li class=""><a href="#worldrank">World Rank</a></li>
+                </ul>
+                    <div id="chinarank" class="tab-pane">
+                        <div id="china-table"></div>
+                    </div>
+                    <div id="worldrank" class="tab-pane">
+                        <div id="world-table"></div>
+                    </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="footer">
+    <div class="container">
+        <p class="muted credit">
+            Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "cloudaice">ch</a>&nbsp;@ 2015.
+        </p>
+    </div>
+</div>
+<script>
+    function show_tables(){
+        select=document.getElementById("china-table");
+        $(select).empty();
+        var github_table  = $("<table class='table table-striped'>");
+        github_table.appendTo(select);
+        var head = $("<thead>");
+        head.appendTo(github_table);
+        var tr = $("<tr>");
+        tr.appendTo(head);
+
+        $("<th>Rank</th>").appendTo(tr);
+        $("<th>Name</th>").appendTo(tr);
+        $("<th>Score</th>").appendTo(tr);
+        $("<th>Language</th>").appendTo(tr);
+        $("<th>Location</th>").appendTo(tr);
+        $("<th>Profile</th>").appendTo(tr);
+        data=[{"login":"daimajia","name":"代码家",
+                "score":"1024","language":"JavaScript","location":"Beijing, China","gravatar":"123"},
+        {"login":"daimajia","name":"代码家",
+                "score":"1024","language":"JavaScript","location":"Beijing, China","gravatar":"123"},
+        {"login":"daimajia","name":"代码家",
+                "score":"1024","language":"JavaScript","location":"Beijing, China","gravatar":"123"},
+        {"login":"daimajia","name":"代码家",
+                "score":"1024","language":"JavaScript","location":"Beijing, China","gravatar":"123"}];
+        for (var i in data){
+            var tr = $("<tr>");
+            tr.appendTo(github_table);
+            var count = parseInt(i) + 1;
+            $("<td class='solid'>#" + count + "</td>").appendTo(tr);
+            $("<td class='solid'>" + "<a href='https://github.com/" + data[i]["login"] + "' target='_blank'>" + data[i]["login"] + "</a>" + "&nbsp(" + data[i]["name"] + ")" + "</td>").appendTo(tr);
+            $("<td class='solid'>" + parseInt(data[i]["score"]) + "</td>").appendTo(tr);
+            $("<td class='solid'>" + data[i]["language"] + "</td>").appendTo(tr);
+            $("<td class='solid'>" + data[i]["location"] + "</td>").appendTo(tr);
+            $("<td class='solid'>" + "<img height='48' width='48' src=" + data[i]["gravatar"] + "/>" + "</td>").appendTo(tr);
+        }
+    }
+</script>
+</body>
+</html>
