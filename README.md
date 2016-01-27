@@ -1,5 +1,4 @@
-#This is a repo use Django+bootstrap+d3.js for rank github user/repo and recommended repo/language, fork by edx_analytics_ustc
-###Base on open edx platform.
+###This is a repo use Django+bootstrap+d3.js for rank github user/repo and recommended repo/language, fork by edx_analytics_ustc.Base on open edx platform.
 ###Analysis tracking log to recommended github repo,and use fp-tree to find frequent pattern,knn algorithm to find what determine the high grade.
 ####Get start to use display.py file with commend
 ```
