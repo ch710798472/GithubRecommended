@@ -112,6 +112,12 @@ function show_ranks(i){
     //}else{
     //    document.getElementById("china_rank").style.display="block";
     //}
+    if(i==3) {
+        document.getElementById("china_rank").style.display = "block";
+        show_python();
+        //isrepeat2 = true;
+        //isrepeat1=false;
+    }
 }
 
 function searchUser(){
