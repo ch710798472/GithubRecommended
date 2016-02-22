@@ -75,7 +75,7 @@ function staticimages(i){
         // document.getElementById("imagesDiv").innerHTML='<img src="../images/nation_count.png" height="800" width="1000" />';
     }
 }
-function show_ranks(){
+function show_ranks(i){
     if(document.getElementById("svg1") != null)
         document.body.removeChild(document.getElementById("svg1"));
     if(document.getElementById("svg1.1") != null)
@@ -90,14 +90,28 @@ function show_ranks(){
         document.getElementById("myCarousel").style.display="none";
     if(document.getElementById("insertImages") != null)
         document.getElementById("insertImages").style.display="none";
-    var isrepeat=false;
-    if(!isrepeat) {
+    if(document.getElementById("china_rank") != null)
+        document.getElementById("china_rank").style.display="none";//要是不需要重新加载需要删除这条
+    var isrepeat1=false;
+    var isrepeat2=false;
+    if(i==1) {
         document.getElementById("china_rank").style.display = "block";
         show_china();
-        isrepeat = true;
-    }else{
-        document.getElementById("china_rank").style.display="block";
+        //isrepeat1 = true;
+        //isrepeat2=false;
     }
+    //}else{
+    //    document.getElementById("china_rank").style.display="block";
+    //}
+    if(i==2) {
+        document.getElementById("china_rank").style.display = "block";
+        show_C();
+        //isrepeat2 = true;
+        //isrepeat1=false;
+    }
+    //}else{
+    //    document.getElementById("china_rank").style.display="block";
+    //}
 }
 
 function searchUser(){
