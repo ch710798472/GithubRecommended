@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}欢迎光临首页{% endblock %}
+{% block title %}用户查询{% endblock %}
 
 {% block content %}
 {#{% include 'ad.html' %}#}
 {#{% url 'add' 4 5 %}#}
-    <a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a>
-    {% for i in List %}
-        {{ i }} {% if not forloop.last %},{% endif %}
-    {% endfor %}
+{#    <a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a>#}
+{#    {% for i in List %}#}
+{#        {{ i }} {% if not forloop.last %},{% endif %}#}
+{#    {% endfor %}#}
     <form method='post'>
         {% csrf_token %}
-        {{ form }}
+{#        {{ form }}#}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag }}{{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
         <input type="submit" value="提交">
     </form>
 {% endblock %}
