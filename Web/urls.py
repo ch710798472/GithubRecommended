@@ -19,8 +19,8 @@ from RecGithub import views
 
 urlpatterns = [
     url(r'^form/',views.form,name='form'),
-    url(r'^add2/(\d+)/(\d+)/$', views.add2, name='add2'),
-    url(r'^add/', views.add,name='add'),
+    url(r'^add/(\d+)/(\d+)/$', views.add, name='add'),
+    url(r'^search/', views.search,name='search'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index,name='home'),
 ]
