@@ -6,7 +6,7 @@ import json
 
 def readcfg():
     config=ConfigParser.ConfigParser()
-    with open('config.cfg','r') as cfgfile:
+    with open('./RecGithub/config.cfg','r') as cfgfile:
         config.readfp(cfgfile)
     user=config.get('info','user')
     passwd=config.get('info','passwd')
@@ -30,8 +30,8 @@ def GetSearchInfo(location,language):
 
     #获取用户详细信息
     username,password=readcfg()
-    ACCESS_TOKEN = '0d1c6d6da836bc28b691f87dd34a1fbdc604c895'
-    client = Github(username,password=password, per_page=100)
+
+    client = Github(login_or_token=username,password=password, per_page=100)
     t = {}
     notdone=[]
     j=0
@@ -40,7 +40,8 @@ def GetSearchInfo(location,language):
             user = client.get_user(i['login'])
             t[user._rawData['login']] = user._rawData
         except Exception,e:
-            print "GetSearchInfo->time out"
+            print "chgithub.GetSearchInfo->time out"
+            print Exception,e
             notdone.append(i['login'])
         if (j%10)==0:
             print j
