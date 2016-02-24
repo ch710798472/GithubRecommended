@@ -10,8 +10,7 @@ def readcfg():
         config.readfp(cfgfile)
     user=config.get('info','user')
     passwd=config.get('info','passwd')
-    print user
-    print passwd
+    return user,passwd
 
 def GetSearchInfo(location,language):
     #search 100 users from location,language
@@ -27,11 +26,10 @@ def GetSearchInfo(location,language):
         temp = r.json()
         d['items'].extend(temp['items'])
 
-    print 'GetSearchInfo->finish rank user'
+    print 'chgithub.GetSearchInfo->finish rank user'
 
     #获取用户详细信息
-    username = 'ch710798472'
-    password = 'Mm456123'
+    username,password=readcfg()
     ACCESS_TOKEN = '0d1c6d6da836bc28b691f87dd34a1fbdc604c895'
     client = Github(username,password=password, per_page=100)
     t = {}
@@ -48,7 +46,7 @@ def GetSearchInfo(location,language):
             print j
         j = j + 1
 
-    print 'GetSearchInfo->finish user info'
+    print 'chgithub.GetSearchInfo->finish user info'
 
     #重新排序
 
@@ -63,7 +61,7 @@ def GetSearchInfo(location,language):
             except Exception,e:
                 pass
 
-    print 'GetSearchInfo->DONE'
+    print 'chgithub.GetSearchInfo->DONE'
 
     if len(d1):
         # filename=+ location+ '_'+language+ '.json'
