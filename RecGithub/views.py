@@ -109,7 +109,7 @@ def GetSearchInfo(location,language):
 
     if len(d1):
         # filename=+ location+ '_'+language+ '.json'
-        filename='../static/data/'+'search.json'
+        filename='./static/bootstrap/data/search.json'
         json.dump(d1, open(filename, 'w'))
         return 1
     else:
