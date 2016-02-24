@@ -88,6 +88,7 @@ def getRespond(user1 = 'edx',repo1 = 'edx-documentation'):
     for (k,v) in response.headers.items():
         print k, "=>", v
 
+    # ACCESS_TOKEN = '9ebc1b3f8357b7b5a208daafd8a65a7ead7eba19'
     ACCESS_TOKEN = '1161b718b9555cd76bf7ff9070c8f1ba300ea885'
 
     # 这里配置查找的用户以及公开仓库
