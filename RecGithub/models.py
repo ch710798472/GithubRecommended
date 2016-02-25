@@ -17,3 +17,9 @@ class SearchForm(forms.Form):
         # mail = forms.EmailField(label='电子邮件')
         # topic = forms.ChoiceField(choices=TOPIC_CHOICES,label='选择评分')
         language = forms.CharField(max_length=100 ,label='编程语言')
+
+class SearchRepoForm(forms.Form):
+        stars = forms.CharField(max_length=20 ,label='获得星数')
+        # mail = forms.EmailField(label='电子邮件')
+        # topic = forms.ChoiceField(choices=TOPIC_CHOICES,label='选择评分')
+        language = forms.CharField(max_length=100 ,label='编程语言')

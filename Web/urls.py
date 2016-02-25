@@ -19,6 +19,7 @@ from RecGithub import views
 
 urlpatterns = [
     url(r'^form/',views.form,name='form'),
+    url(r'^repo/',views.repo,name='repo'),
     url(r'^add/(\d+)/(\d+)/$', views.add, name='add'),
     url(r'^search/', views.search,name='search'),
     url(r'^admin/', admin.site.urls),

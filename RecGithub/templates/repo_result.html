@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+	<meta charset="UTF-8">
+	<title>Github Analytics</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/network.css' %}">
+	<script type="text/javascript" src="{% static 'bootstrap/d3/d3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/network.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/reporect.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/langpie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/logic.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/rank.js' %}"></script>
+</head>
+<body onload="show_repo()">
+<input type="button" name="Submit" value="返回" onclick="javascript:history.back(1)" />
+<!--rank start-->
+<div id="china_rank"></div>
+<!--rank end-->
+<div id="userinfo" class="github-widget-user" data-user="yales2015" style="display:none "></div>
+<!--footer start-->
+<div class="footer">
+	<p>
+Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "ch">ch</a>&nbsp;@ 2015.
+</p>
+</div>
+<!--footer end-->
+
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/asset/jquery-github-user-widget.js' %}"></script>
+</body>
+</html>

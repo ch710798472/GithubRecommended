@@ -325,10 +325,52 @@ function show_search(){
             $("<td>" + data[i]["location"] + "</td>").appendTo(tr);
         }
         $(function () { $("[data-toggle='tooltip']").tooltip(); });
-        //修改提示
-        //$(".media-tooltip").tooltip('hide')
-        //        .attr('data-original-title', "followers:"+data[i]["followers"]+"  following:"+data[i]["following"])
-        //        .tooltip('fixTitle');
+    });
+}
 
+
+function show_repo(){
+    select=document.getElementById("china_rank");
+    $(select).empty();
+    var rankinfo  = $("<div id='rankinfo' style='margin-top:55px;color:blue;font-size: 40px;font-family: sans-serif;'><p align='center'>查询结果</p></div>");
+    rankinfo.appendTo(select);
+    var github_table  = $("<table class='table table-striped table-hover'>");
+    github_table.appendTo(select);
+    var head = $("<thead class='table_title'>");
+    head.appendTo(github_table);
+    var tr = $("<tr>");
+    tr.appendTo(head);
+
+    $("<th class='border_right wid1'>排名</th>").appendTo(tr);
+    $("<th class='border_right wid1'>项目</th>").appendTo(tr);
+    $("<th class='border_right wid1'>创建者</th>").appendTo(tr);
+    $("<th class='border_right wid1'>简介</th>").appendTo(tr);
+    $("<th class='border_right wid1'>语言</th>").appendTo(tr);
+    $("<th class='border_right wid1'>stars</th>").appendTo(tr);
+    $("<th class='border_right wid1'>forks</th>").appendTo(tr);
+
+
+    $("<tbody class='tbody_color'>").appendTo(github_table);
+
+    var tips;
+    d3.json("/static/bootstrap/data/searchrepo.json", function(data) {
+        for (var i in data["items"]) {
+            //console.log(data[i]);
+            tips = "关注者："+data["items"][i]["watchers"]+"  最后提交时间:"+data["items"][i]["pushed_at"];
+            var tr = $("<tr class='media-tooltip' data-toggle='tooltip' data-html='true' data-original-title='<h3>"+tips+"</h3>' >");
+            tr.appendTo(github_table);
+            var count = parseInt(i) + 1;
+            $("<td>NO." + count + "</td>").appendTo(tr);
+            //$("<td>" + data["items"][i]["name"] + "</td>").appendTo(tr);
+            $("<td>" + "<a href='" +　data["items"][i]["html_url"] + "' target='_blank'>" + data["items"][i]["name"] + "</a>" + "</td>").appendTo(tr);
+
+            $("<td>" + "<a href='https://github.com/" +　data["items"][i]["owner"]["login"] + "' target='_blank'>" + data["items"][i]["owner"]["login"] + "</a>" + "</td>").appendTo(tr);
+            $("<td>" + data["items"][i]["description"] + "</td>").appendTo(tr);
+            $("<td>" + data["items"][i]["language"] + "</td>").appendTo(tr);
+            $("<td>" + data["items"][i]["stargazers_count"] + "</td>").appendTo(tr);
+            $("<td>" + data["items"][i]["forks"] + "</td>").appendTo(tr);
+
+        }
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
     });
 }
