@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}关系图谱{% endblock %}
+
+{% block content %}
+{#{% include 'ad.html' %}#}
+{#{% url 'add' 4 5 %}#}
+{#    <a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a>#}
+{#    {% for i in List %}#}
+{#        {{ i }} {% if not forloop.last %},{% endif %}#}
+{#    {% endfor %}#}
+    <form method='post'>
+        {% csrf_token %}
+{#        {{ form }}#}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag }}{{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <input type="submit" value="搜索">
+    </form>
+    <input type="button" name="Submit" value="返回" onclick="javascript:history.back(1)" />
+{% endblock %}

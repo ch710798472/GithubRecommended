@@ -141,3 +141,40 @@ def SocialConnect(USER,REPO):
     json.dump(d, open(filename, 'w'))
     print 'chgithub.SocialConnect->DONE'
     return 1
+
+def SearchConnect(searchKey):
+
+    username,password=readcfg()
+
+    client = Github(login_or_token=username,password=password, per_page=100)
+
+    user = client.get_user(searchKey)
+    repos = [s for s in user.get_repos()]
+
+    print 'chgithub.search->get start'
+
+    g = nx.DiGraph()
+    g.add_node(searchKey + '(u)', type='user')
+
+    try:
+        for r in repos:
+            stargazers = [ s for s in r.get_stargazers() ]
+            if(len(stargazers)):
+                g.add_edge(searchKey + '(u)',r.name + '(r)', type='have')
+
+            for sg in stargazers:
+                g.add_node(sg.login + '(u)', type='user')
+                g.add_edge(sg.login + '(u)', r.name + '(r)', type='gazes')
+
+            contributors = [ s for s in r.get_contributors() ]
+            for sg in contributors:
+                g.add_node(sg.login + '(u)', type='user')
+                g.add_edge(sg.login + '(u)', r.name + '(r)', type='conbs')
+    except Exception,e:
+        print "time out"
+
+    d = json_graph.node_link_data(g)
+    filename = "./static/bootstrap/data/search_key.json"
+    json.dump(d, open(filename, 'w'))
+    print 'chgithub.search->DONE'
+    return 1

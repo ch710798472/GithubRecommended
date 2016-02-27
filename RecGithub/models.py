@@ -17,9 +17,21 @@ class SearchForm(forms.Form):
         # mail = forms.EmailField(label='电子邮件')
         # topic = forms.ChoiceField(choices=TOPIC_CHOICES,label='选择评分')
         language = forms.CharField(max_length=100 ,label='编程语言')
+        def __unicode__(self):
+            return self.name
 
 class SearchRepoForm(forms.Form):
         stars = forms.CharField(max_length=20 ,label='获得星数')
         # mail = forms.EmailField(label='电子邮件')
         # topic = forms.ChoiceField(choices=TOPIC_CHOICES,label='选择评分')
         language = forms.CharField(max_length=100 ,label='编程语言')
+        def __unicode__(self):
+            return self.name
+
+class ConnectForm(forms.Form):
+        user = forms.CharField(max_length=20 ,label='用户名称')
+        # mail = forms.EmailField(label='电子邮件')
+        # topic = forms.ChoiceField(choices=TOPIC_CHOICES,label='选择评分')
+        repo = forms.CharField(max_length=100 ,label='用户仓库')
+        def __unicode__(self):
+            return self.name

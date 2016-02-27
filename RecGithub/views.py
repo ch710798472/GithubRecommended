@@ -3,9 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 # 引入我们创建的表单类
-from models import SearchForm,SearchRepoForm
+from models import SearchForm,SearchRepoForm,ConnectForm
 import requests
-from chgithub import GetSearchInfo,SearchRepo,SocialConnect
+from chgithub import GetSearchInfo,SearchRepo,SocialConnect,SearchConnect
 
 def index(request):
     return render(request, 'index.html')
@@ -51,14 +51,30 @@ def repo(request):
         form = SearchRepoForm()
     return render(request, 'repo.html', {'form': form})
 
+def connect(request):
+    if request.method == 'POST':# 当提交表单时
+
+        form = ConnectForm(request.POST) # form 包含提交的数据
+
+        if form.is_valid():# 如果提交的数据合法
+            user = form.cleaned_data['user']
+            repo = form.cleaned_data['repo']
+
+            if SocialConnect(user,repo):
+                return render(request,'connect_result.html')
+            else:
+                return HttpResponse(str("查找结果不存在，请重新输入！"))
+
+    else:# 当正常访问时
+        form = ConnectForm()
+    return render(request, 'connect.html', {'form': form})
+
 def search(request):
     searchKey = request.GET['searchKey']
     if searchKey.strip()=='':
          return HttpResponse(str("请输入查找关键字！"))
     else:
-        tmp1 = searchKey.strip().split('/')
-        tmp2 = SocialConnect(tmp1[0],tmp1[1])
-        if(tmp2):
-            return render(request, 'social_connetc.html')
+        if(SearchConnect(searchKey.strip())):
+            return render(request, 'search_key_result.html')
         else:
             return HttpResponse(str('请重新查找！'))
