@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # 引入我们创建的表单类
 from models import SearchForm,SearchRepoForm
 import requests
-from chgithub import GetSearchInfo,SearchRepo
+from chgithub import GetSearchInfo,SearchRepo,SocialConnect
 
 def index(request):
     return render(request, 'index.html')
@@ -56,4 +56,9 @@ def search(request):
     if searchKey.strip()=='':
          return HttpResponse(str("请输入查找关键字！"))
     else:
-        return HttpResponse(str(searchKey))
+        tmp1 = searchKey.strip().split('/')
+        tmp2 = SocialConnect(tmp1[0],tmp1[1])
+        if(tmp2):
+            return render(request, 'social_connetc.html')
+        else:
+            return HttpResponse(str('请重新查找！'))

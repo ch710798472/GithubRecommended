@@ -13,6 +13,12 @@ da.githubRec()
 da.fptree()
 da.svd()
 ```
+###Write your github username,password in config.cfg(a new file in RecGithub make yourself) as follow:
+```
+[info]
+user:xxxxxxx
+passwd:xxxxx
+```
 ###Get Web service start:
 ```
 python manage.py runserver 0.0.0.0:8000

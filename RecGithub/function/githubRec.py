@@ -131,7 +131,7 @@ def addEdge(stargazers,client,g):
     '''
     for i, sg in enumerate(stargazers):
         try:
-            for follower in sg.get_followers():
+            for follower in sg.get_followers():#成千上万的跟随者导致速度变慢
                 if follower.login + '(u)' in g:
                     g.add_edge(follower.login + '(u)', sg.login + '(u)', type='follows')
         except Exception, e:

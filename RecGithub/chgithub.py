@@ -3,6 +3,8 @@ import ConfigParser
 import requests
 from github import Github
 import json
+import networkx as nx
+from networkx.readwrite import json_graph
 
 def readcfg():
     '''
@@ -108,7 +110,7 @@ def SearchRepo(stars,language):
         print 'chgithub.GetSearchInfo->DONE'
         return 0
 
-def SocialConnect(searchKey):
+def SocialConnect(USER,REPO):
 
     username,password=readcfg()
 
@@ -117,4 +119,25 @@ def SocialConnect(searchKey):
     user = client.get_user(USER)
     repo = user.get_repo(REPO)
 
-    stargazers = [ s for s in repo.get_stargazers() ] #可以先对这些人数进行分类限制
+    print 'chgithub.SocialConnect->get start'
+    stargazers = [ s for s in repo.get_stargazers() ] #获得关注者，通常这个人数比较多
+    contributors = [ s for s in repo.get_contributors() ] #获得贡献者
+
+    g = nx.DiGraph()
+    g.add_node(repo.name + '(r)', type='repo', lang=repo.language, owner=user.login)
+
+    for sg in stargazers:
+        g.add_node(sg.login + '(u)', type='user')
+        g.add_edge(sg.login + '(u)', repo.name + '(r)', type='gazes')
+    print 'chgithub.SocialConnect->finish add stargazers'
+
+    for sg in contributors:
+        g.add_node(sg.login + '(u)', type='user')
+        g.add_edge(sg.login + '(u)', repo.name + '(r)', type='conbs')
+    print 'chgithub.SocialConnect->finish add contributors'
+
+    d = json_graph.node_link_data(g)
+    filename = "./static/bootstrap/data/connect.json"
+    json.dump(d, open(filename, 'w'))
+    print 'chgithub.SocialConnect->DONE'
+    return 1

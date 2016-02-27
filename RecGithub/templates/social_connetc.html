@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Github Repo Recommended</title>
-    <script type="text/javascript" src="d3/d3.js"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/d3/d3.js' %}"></script>
     <style>
         .link {
             stroke: #ccc;
@@ -19,7 +20,7 @@
     </style>
 </head>
 <body>
-<div class="titletext" style="color:#0000ff">To recommended best match github user repository</div>
+<div class="titletext" style="color:#0000ff">关系图谱</div>
 
 <script>
     var width = 1000,
@@ -33,10 +34,10 @@
     var force = d3.layout.force()
             .gravity(.15)//保证图形慢慢像中心靠拢的向心力
             .distance(100)
-            .charge(-100)
+            .charge(-400)
             .size([width, height]);//图形限定的范围
 
-    d3.json("data/githubRec.json", function(json) {
+    d3.json("/static/bootstrap/data/connect.json", function(json) {
         force.nodes(json.nodes)
                 .links(json.links)
                 .start();
