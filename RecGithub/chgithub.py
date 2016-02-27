@@ -151,7 +151,7 @@ def SearchConnect(searchKey):
     user = client.get_user(searchKey)
     repos = [s for s in user.get_repos()]
 
-    print 'chgithub.search->get start'
+    print 'chgithub.SearchConnect->get start'
 
     g = nx.DiGraph()
     g.add_node(searchKey + '(u)', type='user')
@@ -171,10 +171,10 @@ def SearchConnect(searchKey):
                 g.add_node(sg.login + '(u)', type='user')
                 g.add_edge(sg.login + '(u)', r.name + '(r)', type='conbs')
     except Exception,e:
-        print "time out"
+        print "chgithub.SearchConnect->time out"
 
     d = json_graph.node_link_data(g)
     filename = "./static/bootstrap/data/search_key.json"
     json.dump(d, open(filename, 'w'))
-    print 'chgithub.search->DONE'
+    print 'chgithub.SearchConnect->DONE'
     return 1
