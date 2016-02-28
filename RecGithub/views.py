@@ -5,6 +5,7 @@ from django.http import HttpResponse
 # 引入我们创建的表单类
 from models import SearchForm,SearchRepoForm,ConnectForm
 import requests
+import json
 from chgithub import GetSearchInfo,SearchRepo,SocialConnect,SearchConnect
 
 def index(request):
@@ -24,8 +25,9 @@ def form(request):
             location = form.cleaned_data['location']
             language = form.cleaned_data['language']
 
+            Dict = {'filename':location+language}
             if GetSearchInfo(location,language):
-                return render(request,'search_result.html')
+                return render(request,'search_result.html',{'Dict':json.dumps(Dict)})
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
@@ -42,8 +44,9 @@ def repo(request):
             stars = form.cleaned_data['stars']
             language = form.cleaned_data['language']
 
+            Dict = {'filename':language+stars}
             if SearchRepo(stars,language):
-                return render(request,'repo_result.html')
+                return render(request,'repo_result.html',{'Dict':json.dumps(Dict)})
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
@@ -60,8 +63,9 @@ def connect(request):
             user = form.cleaned_data['user']
             repo = form.cleaned_data['repo']
 
+            Dict = {'filename':user+repo}
             if SocialConnect(user,repo):
-                return render(request,'connect_result.html')
+                return render(request,'connect_result.html',{'Dict':json.dumps(Dict)})
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
@@ -71,10 +75,11 @@ def connect(request):
 
 def search(request):
     searchKey = request.GET['searchKey']
+    Dict = {'filename': searchKey.strip()}
     if searchKey.strip()=='':
          return HttpResponse(str("请输入查找关键字！"))
     else:
         if(SearchConnect(searchKey.strip())):
-            return render(request, 'search_key_result.html')
+            return render(request, 'search_key_result.html',{'Dict':json.dumps(Dict)})
         else:
             return HttpResponse(str('请重新查找！'))

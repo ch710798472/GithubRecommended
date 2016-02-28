@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Github Repo Recommended</title>
+    <title>Github Recommended</title>
     <script type="text/javascript" src="{% static 'bootstrap/d3/d3.js' %}"></script>
     <style>
         .link {
@@ -23,8 +23,10 @@
 <div class="titletext" style="color:#0000ff">关系图谱</div>
 
 <script>
-    var width = 1000,
-            height = 600,
+    var filename={{ Dict|safe }};
+
+    var width = 1400,
+            height = 800,
             fill = d3.scale.category20();
 
     var svg = d3.select("body").append("svg")
@@ -37,7 +39,7 @@
             .charge(-400)
             .size([width, height]);//图形限定的范围
 
-    d3.json("/static/bootstrap/data/connect.json", function(json) {
+    d3.json("/static/bootstrap/data/"+filename['filename']+".json", function(json) {
         force.nodes(json.nodes)
                 .links(json.links)
                 .start();

@@ -14,7 +14,11 @@
 	<script type="text/javascript" src="{% static 'bootstrap/js/logic.js' %}"></script>
 	<script type="text/javascript" src="{% static 'bootstrap/js/rank.js' %}"></script>
 </head>
-<body onload="show_repo()">
+<script>
+    var filename={{ Dict|safe }};
+    f = filename['filename'];
+</script>
+<body onload="show_repo(f)">
 <input type="button" name="Submit" value="返回" onclick="javascript:history.back(1)" />
 <!--rank start-->
 <div id="china_rank"></div>

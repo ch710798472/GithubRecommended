@@ -251,7 +251,7 @@ function show_python(){
     });
 }
 
-function show_search(){
+function show_search(f){
     select=document.getElementById("china_rank");
     $(select).empty();
     var rankinfo  = $("<div id='rankinfo' style='margin-top:55px;color:blue;font-size: 40px;font-family: sans-serif;'><p align='center'>查询结果</p></div>");
@@ -283,7 +283,8 @@ function show_search(){
     $("<tbody class='tbody_color'>").appendTo(github_table);
 
     var tips;
-    d3.json("/static/bootstrap/data/search.json", function(data) {
+
+    d3.json("/static/bootstrap/data/"+ f + ".json", function(data) {
         for (var i in data) {
             //console.log(data[i]);
             tips = "followers:"+data[i]["followers"]+"  following:"+data[i]["following"];
@@ -353,7 +354,7 @@ function show_repo(){
     $("<tbody class='tbody_color'>").appendTo(github_table);
 
     var tips;
-    d3.json("/static/bootstrap/data/searchrepo.json", function(data) {
+    d3.json("/static/bootstrap/data/"+ f + ".json", function(data) {
         for (var i in data["items"]) {
             //console.log(data[i]);
             tips = "关注者："+data["items"][i]["watchers"]+"  最后提交时间:"+data["items"][i]["pushed_at"];
