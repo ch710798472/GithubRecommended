@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^connect/$',views.connect,name='connect'),
     url(r'^add/(\d+)/(\d+)/$', views.add, name='add'),
     url(r'^search/$', views.search,name='search'),
+    url(r'^nonconnect/$', views.nonconnect,name='nonconnect'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index,name='home'),
 ]

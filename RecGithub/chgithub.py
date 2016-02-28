@@ -192,3 +192,40 @@ def SearchConnect(searchKey):
         json.dump(d, open(filename, 'w'))
         print 'chgithub.SearchConnect->DONE'
         return 1
+
+
+def nonSocialConnect(USER,REPO):
+
+    filename = "./static/bootstrap/data/" +USER +REPO+ ".json"
+    if os.path.exists(filename):
+        return 1
+    else:
+
+        username,password=readcfg()
+
+        client = Github(login_or_token=username,password=password, per_page=100)
+
+        user = client.get_user(USER)
+        repo = user.get_repo(REPO)
+
+        print 'chgithub.SocialConnect->get start'
+        stargazers = [ s for s in repo.get_stargazers() ] #获得关注者，通常这个人数比较多
+        contributors = [ s for s in repo.get_contributors() ] #获得贡献者
+
+        g = nx.DiGraph()
+        g.add_node(repo.name + '(r)', type='repo', lang=repo.language, owner=user.login)
+
+        for sg in stargazers:
+            g.add_node(sg.login + '(u)', type='user')
+            g.add_edge(sg.login + '(u)', repo.name + '(r)', type='gazes')
+        print 'chgithub.SocialConnect->finish add stargazers'
+
+        for sg in contributors:
+            g.add_node(sg.login + '(u)', type='user')
+            g.add_edge(sg.login + '(u)', repo.name + '(r)', type='conbs')
+        print 'chgithub.SocialConnect->finish add contributors'
+
+        d = json_graph.node_link_data(g)
+        json.dump(d, open(filename, 'w'))
+        print 'chgithub.SocialConnect->DONE'
+        return 1
