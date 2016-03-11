@@ -18,6 +18,7 @@ from django.contrib import admin
 from RecGithub import views
 
 urlpatterns = [
+    url(r'^$',views.index,name='home'),
     url(r'^form/$',views.form,name='form'),
     url(r'^repo/$',views.repo,name='repo'),
     url(r'^connect/$',views.connect,name='connect'),
@@ -25,5 +26,6 @@ urlpatterns = [
     url(r'^search/$', views.search,name='search'),
     url(r'^nonconnect/$', views.nonconnect,name='nonconnect'),
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.index,name='home'),
+    url(r'^home/$',views.index,name='home'),
+
 ]

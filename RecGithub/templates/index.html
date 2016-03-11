@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<div>
+<div id="nav">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<!--also could be navbar-static-top-->
 		<div class="container-fluid">
@@ -38,7 +38,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#" onclick="getstart()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页<span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="./"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页<span class="sr-only">(current)</span></a></li>
 					<li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo top10</a></li>
 					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳start top10</a></li>
 					<li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang top10</a></li>
@@ -80,7 +80,6 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 </div>
-
 <!--carousel start-->
 <div id="myCarousel" class="carousel slide" style="margin-top: 55px;margin-left: 200px;margin-right: 200px">
    <!-- 轮播（Carousel）指标 -->
@@ -122,8 +121,9 @@
 <div id="china_rank"></div>
 <!--rank end-->
 <div id="userinfo" class="github-widget-user" data-user="yales2015" style="display:none "></div>
+
 <!--footer start-->
-<div class="footer">
+<div id="foot" class="footer">
 	<p>
 Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "ch">ch</a>&nbsp;@ 2015.
 </p>

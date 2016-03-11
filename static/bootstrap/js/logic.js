@@ -3,6 +3,12 @@
  */
 //响应不同的请求函数
 function devild(i){
+    //var div= document.getElementsByTagName("div");
+    //for(var i=0;i<div.length;i++){
+    //    if(div[i].id=="imagesDiv"&&document.getElementById(div[i].id) != null){
+    //        document.getElementById(div[i].id).innerHTML="";
+    //    }
+    //}
     if(document.getElementById("svg1") != null)
         document.body.removeChild(document.getElementById("svg1"));
     if(document.getElementById("svg1.1")!= null)
@@ -19,6 +25,8 @@ function devild(i){
         document.getElementById("insertImages").style.display="none";
     if(document.getElementById("china_rank") != null)
         document.getElementById("china_rank").style.display="none";
+    if(document.getElementById("formId") != null)
+        document.body.removeChild(document.getElementById("formId"));
     if(i ==1) {
         reporect();
     }
@@ -50,6 +58,8 @@ function getstart(){
         document.getElementById("insertImages").style.display="none";
         if(document.getElementById("china_rank") != null)
         document.getElementById("china_rank").style.display="none";
+        if(document.getElementById("formId") != null)
+        document.body.removeChild(document.getElementById("formId"));
     }
 }
 
@@ -70,6 +80,8 @@ function staticimages(i){
         document.getElementById("insertImages").style.display="block";
     if(document.getElementById("china_rank") != null)
         document.getElementById("china_rank").style.display="none";
+    if(document.getElementById("formId") != null)
+        document.body.removeChild(document.getElementById("formId"));
     if(i == 1){
         document.getElementById("insertImages").src="/static/bootstrap/images/nation_count.png";
         // document.getElementById("imagesDiv").innerHTML='<img src="../images/nation_count.png" height="800" width="1000" />';

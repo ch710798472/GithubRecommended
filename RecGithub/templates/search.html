@@ -9,16 +9,17 @@
 {#    {% for i in List %}#}
 {#        {{ i }} {% if not forloop.last %},{% endif %}#}
 {#    {% endfor %}#}
-    <form method='post'>
+    <form id="formId" class="container" method='post'>
         {% csrf_token %}
 {#        {{ form }}#}
         {% for field in form %}
-            <div class="fieldWrapper">
+            <div class="field">
                 {{ field.label_tag }}{{ field }}
                 {{ field.errors }}
             </div>
         {% endfor %}
-        <input type="submit" value="搜索">
+        <input type="submit" class="buttoncss" value="搜索">
+        <input type="button" class="buttoncss" name="Submit" value="返回" onclick="javascript:history.back(1)" />
     </form>
-    <input type="button" name="Submit" value="返回" onclick="javascript:history.back(1)" />
+
 {% endblock %}
