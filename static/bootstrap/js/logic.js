@@ -31,7 +31,7 @@ function devild(i){
         reporect();
     }
     if(i ==2) {
-        langpie();
+        startpie();
     }
     if(i ==3) {
         langpie();

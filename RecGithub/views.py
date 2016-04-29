@@ -17,11 +17,11 @@ def home(request):
     return render(request, 'index.html')
 
 def form(request):
-    if request.method == 'POST':# 当提交表单时
+    if request.method == 'POST':   # 当提交表单时
 
-        form = SearchForm(request.POST) # form 包含提交的数据
+        form = SearchForm(request.POST)  # form 包含提交的数据
 
-        if form.is_valid():# 如果提交的数据合法
+        if form.is_valid():  # 如果提交的数据合法
             location = form.cleaned_data['location']
             language = form.cleaned_data['language']
 
@@ -31,16 +31,16 @@ def form(request):
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
-    else:# 当正常访问时
+    else:  # 当正常访问时
         form = SearchForm()
     return render(request, 'search.html', {'form': form})
 
 def repo(request):
-    if request.method == 'POST':# 当提交表单时
+    if request.method == 'POST':  # 当提交表单时
 
         form = SearchRepoForm(request.POST) # form 包含提交的数据
 
-        if form.is_valid():# 如果提交的数据合法
+        if form.is_valid():  # 如果提交的数据合法
             stars = form.cleaned_data['stars']
             language = form.cleaned_data['language']
 
@@ -50,16 +50,16 @@ def repo(request):
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
-    else:# 当正常访问时
+    else:  # 当正常访问时
         form = SearchRepoForm()
     return render(request, 'repo.html', {'form': form})
 
 def connect(request):
-    if request.method == 'POST':# 当提交表单时
+    if request.method == 'POST':  # 当提交表单时
 
-        form = ConnectForm(request.POST) # form 包含提交的数据
+        form = ConnectForm(request.POST)   # form 包含提交的数据
 
-        if form.is_valid():# 如果提交的数据合法
+        if form.is_valid():  # 如果提交的数据合法
             user = form.cleaned_data['user']
             repo = form.cleaned_data['repo']
 
@@ -69,7 +69,7 @@ def connect(request):
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
-    else:# 当正常访问时
+    else:  # 当正常访问时
         form = ConnectForm()
     return render(request, 'connect.html', {'form': form})
 
@@ -85,11 +85,11 @@ def search(request):
             return HttpResponse(str('请重新查找！'))
 
 def nonconnect(request):
-    if request.method == 'POST':# 当提交表单时
+    if request.method == 'POST':  # 当提交表单时
 
-        form = ConnectForm(request.POST) # form 包含提交的数据
+        form = ConnectForm(request.POST)  # form 包含提交的数据
 
-        if form.is_valid():# 如果提交的数据合法
+        if form.is_valid():  # 如果提交的数据合法
             user = form.cleaned_data['user']
             repo = form.cleaned_data['repo']
 
@@ -99,6 +99,6 @@ def nonconnect(request):
             else:
                 return HttpResponse(str("查找结果不存在，请重新输入！"))
 
-    else:# 当正常访问时
+    else:  # 当正常访问时
         form = ConnectForm()
     return render(request, 'connect.html', {'form': form})

@@ -193,7 +193,6 @@ def SearchConnect(searchKey):
         print 'chgithub.SearchConnect->DONE'
         return 1
 
-
 def nonSocialConnect(USER,REPO):
 
     filename = "./static/bootstrap/data/" +USER +REPO+ ".json"

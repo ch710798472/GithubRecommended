@@ -119,9 +119,16 @@
                 .call(drag);
 
         node.append("circle")
-                .attr("r", 8)
-//                .style("fill", function(d) { return color(1); })
-                .style("fill", function(d,i) { return color(i); })
+{#                .attr("r", 8)#}
+                .attr("r",function(d,i) { if(json.nodes[i].type=="user") return 6;else return 8 })
+                .style("fill", function(d,i) {
+                    if (json.nodes[i].type == "user") {
+                        if (json.nodes[i].id == filename['filename'] + "(u)")
+                            return color(5);
+                        else return color(1);
+                    }else
+                        return color(2); })
+{#                .style("fill", function(d,i) { return color(i); })#}
                 .append("title")
                 .text(function(d) {
                     //返回每个节点用户信息
