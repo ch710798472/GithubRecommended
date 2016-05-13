@@ -39,16 +39,16 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="../#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页<span class="sr-only">(current)</span></a></li>
-					<li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo top10</a></li>
-					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳start top10</a></li>
-					<li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang top10</a></li>
-					<li><a href="#" onclick="devild(4)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>兴趣图谱</a></li>
+					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Top10</a></li>
+                    <li><a href="#" onclick="show_ranks(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>User ranking</a></li>
+                    <li><a href="#" onclick="show_ranks(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>C ranking</a></li>
+                    <li><a href="/form" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search User</a></li>
+                    <li><a href="/connect" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Connection</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>svd</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>apriori fp tree</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>knn</a></li>
+							<li><a href="#" onclick="show_ranks(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Python ranking</a></li>
+                            <li><a href="/repo" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search repo</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -64,15 +64,12 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#" onclick="staticimages(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>count nation</a></li>
-							<li><a href="#" onclick="show_ranks(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank user</a></li>
-							<li><a href="#" onclick="show_ranks(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank C</a></li>
-                            <li><a href="#" onclick="show_ranks(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank Python</a></li>
-                            <li><a href="/form" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>search user</a></li>
-                            <li><a href="/repo" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>search repo</a></li>
-                            <li><a href="/connect" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>connection</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="/nonconnect"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>non-search</a></li>
+							 <!--<li><a href="#" onclick="staticimages(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>count nation</a></li>-->
+                            <li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo Top10</a></li>
+                            <li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang Top10</a></li>
+                            <li><a href="#" onclick="devild(4)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>兴趣图谱</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/nonconnect"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Non-search</a></li>
 						</ul>
 					</li>
 				</ul>

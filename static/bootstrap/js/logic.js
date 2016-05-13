@@ -27,6 +27,10 @@ function devild(i){
         document.getElementById("china_rank").style.display="none";
     if(document.getElementById("formId") != null)
         document.body.removeChild(document.getElementById("formId"));
+    if(document.getElementById("svg0") != null)
+        document.body.removeChild(document.getElementById("svg0"));
+    if(document.getElementById("introduce") != null)
+        document.body.removeChild(document.getElementById("introduce"));
     if(i ==1) {
         reporect();
     }
@@ -60,6 +64,10 @@ function getstart(){
         document.getElementById("china_rank").style.display="none";
         if(document.getElementById("formId") != null)
         document.body.removeChild(document.getElementById("formId"));
+        if(document.getElementById("svg0") != null)
+        document.body.removeChild(document.getElementById("svg0"));
+        if(document.getElementById("introduce") != null)
+        document.body.removeChild(document.getElementById("introduce"));
     }
 }
 
@@ -82,6 +90,10 @@ function staticimages(i){
         document.getElementById("china_rank").style.display="none";
     if(document.getElementById("formId") != null)
         document.body.removeChild(document.getElementById("formId"));
+    if(document.getElementById("svg0") != null)
+        document.body.removeChild(document.getElementById("svg0"));
+    if(document.getElementById("introduce") != null)
+        document.body.removeChild(document.getElementById("introduce"));
     if(i == 1){
         document.getElementById("insertImages").src="/static/bootstrap/images/nation_count.png";
         // document.getElementById("imagesDiv").innerHTML='<img src="../images/nation_count.png" height="800" width="1000" />';
@@ -104,6 +116,10 @@ function show_ranks(i){
         document.getElementById("insertImages").style.display="none";
     if(document.getElementById("china_rank") != null)
         document.getElementById("china_rank").style.display="none";//要是不需要重新加载需要删除这条
+    if(document.getElementById("svg0") != null)
+        document.body.removeChild(document.getElementById("svg0"));
+    if(document.getElementById("introduce") != null)
+        document.body.removeChild(document.getElementById("introduce"));
     var isrepeat1=false;
     var isrepeat2=false;
     if(i==1) {

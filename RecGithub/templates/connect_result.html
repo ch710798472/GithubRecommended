@@ -4,10 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Github Recommended</title>
-    <script type="text/javascript" src="{% static 'bootstrap/d3/d3.js' %}"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/network.css' %}">
+	<script type="text/javascript" src="{% static 'bootstrap/d3/d3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/network.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/reporect.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/langpie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/logic.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/rank.js' %}"></script>
     <style>
         .link {
             stroke: #ccc;
+            stroke-width:3;
         }
         .node text {
             pointer-events: none;
@@ -22,6 +30,68 @@
 <body>
 <div class="titletext" style="color:#0000ff">关系图谱</div>
 
+<div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<!--also could be navbar-static-top-->
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<!--分辨率隐藏按钮-->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<!--<img alt="Brand" src="...">-->
+					<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="../#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页<span class="sr-only">(current)</span></a></li>
+					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Top10</a></li>
+                    <li><a href="#" onclick="show_ranks(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>User ranking</a></li>
+                    <li><a href="#" onclick="show_ranks(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>C ranking</a></li>
+                    <li><a href="/form" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search User</a></li>
+                    <li><a href="/connect" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Connection</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" onclick="show_ranks(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Python ranking</a></li>
+                            <li><a href="/repo" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search repo</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search" method='get' action="/search/">
+                    {% csrf_token %}
+					<div class="form-group">
+						<input id="searchUsername" name="searchKey" type="text" class="form-control" placeholder="输入关键字">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://ch710798472.github.io/blog/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>联系我们</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							 <!--<li><a href="#" onclick="staticimages(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>count nation</a></li>-->
+                            <li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo Top10</a></li>
+                            <li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang Top10</a></li>
+                            <li><a href="#" onclick="devild(4)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>兴趣图谱</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/nonconnect"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Non-search</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+</div>
+
 <script>
     var filename={{ Dict|safe }};
 
@@ -31,7 +101,8 @@
 
     var svg = d3.select("body").append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .attr("id","svg0");
 
     var force = d3.layout.force()
             .gravity(.15)//保证图形慢慢像中心靠拢的向心力
@@ -47,7 +118,9 @@
         var link = svg.selectAll(".link")
                 .data(json.links)
                 .enter().append("line")
-                .attr("class", "link")
+                //.attr("class", "link")
+                .attr("stroke",function(d) { if(d.source.id=="user" && d.target.id=="user") return "red";else return "gray" })
+                .attr("stroke-width",function(d) { if(d.source.id=="user" && d.target.id=="user") return 5;else return 2 })
                 .on("mouseover",function(d){
                     //显示连接线上的文字
                     var x1 = d3.select(this).attr("x1");
@@ -161,5 +234,20 @@
 
     });
 </script>
+<!--rank start-->
+<div id="china_rank"></div>
+<!--rank end-->
+<div id="userinfo" class="github-widget-user" data-user="yales2015" style="display:none "></div>
+<!--footer start-->
+<div class="footer">
+	<p>
+Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "ch">ch</a>&nbsp;@ 2015.
+</p>
+</div>
+<!--footer end-->
+
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/asset/jquery-github-user-widget.js' %}"></script>
 </body>
 </html>

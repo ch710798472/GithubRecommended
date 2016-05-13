@@ -39,40 +39,37 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="./"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页<span class="sr-only">(current)</span></a></li>
-					<li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo top10</a></li>
-					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳start top10</a></li>
-					<li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang top10</a></li>
-					<li><a href="#" onclick="devild(4)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>兴趣图谱</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>svd</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>apriori fp tree</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>knn</a></li>
-						</ul>
-					</li>
-				</ul>
-				<form class="navbar-form navbar-left" role="search" method='get' action="/search/">
+					<li><a href="#" onclick="devild(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Top10</a></li>
+                    <li><a href="#" onclick="show_ranks(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>User ranking</a></li>
+                    <li><a href="#" onclick="show_ranks(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>C ranking</a></li>
+                    <li><a href="/form" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search User</a></li>
+                    <li><a href="/connect" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Connection</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="show_ranks(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Python ranking</a></li>
+                            <li><a href="/repo" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Search repo</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search" method='get' action="/search/">
                     {% csrf_token %}
-					<div class="form-group">
-						<input id="searchUsername" name="searchKey" type="text" class="form-control" placeholder="输入关键字">
-					</div>
-					<button type="submit" class="btn btn-default">搜索</button>
-				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="http://ch710798472.github.io/blog/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>联系我们</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#" onclick="staticimages(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>count nation</a></li>
-							<li><a href="#" onclick="show_ranks(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank user</a></li>
-							<li><a href="#" onclick="show_ranks(2)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank C</a></li>
-                            <li><a href="#" onclick="show_ranks(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>rank Python</a></li>
-                            <li><a href="/form" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>search user</a></li>
-                            <li><a href="/repo" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>search repo</a></li>
-                            <li><a href="/connect" ><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>connection</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="/nonconnect"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>non-search</a></li>
+                    <div class="form-group">
+                        <input id="searchUsername" name="searchKey" type="text" class="form-control" placeholder="输入关键字">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://ch710798472.github.io/blog/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>联系我们</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--<li><a href="#" onclick="staticimages(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>count nation</a></li>-->
+                            <li><a href="#" onclick="devild(1)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳repo Top10</a></li>
+                            <li><a href="#" onclick="devild(3)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>最佳lang Top10</a></li>
+                            <li><a href="#" onclick="devild(4)"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>兴趣图谱</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/nonconnect"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>Non-search</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -80,8 +77,23 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 </div>
+
+<!--introduce start-->
+<div id="introduce" style="margin-top: 70px;margin-left: 20px">
+    <p>
+        网站功能简介：
+        </br>－Top10: 最流行的仓库它们所使用的编程语言的分布图。
+        </br>－User ranking: 中国区Github用户得分排名。
+        </br>－C ranking: 中国区使用C语言得分用户排名。
+        </br>－Search User/repo: 搜索Github上某一地区某一编程语言的特定用户（某一得星数的项目仓库）。
+        </br>－Connection: 可视化某用户的仓库相关联的用户关系图谱。
+        </br>－搜索: 搜索某用户在Github上的用户关系图谱(网状图)。
+    </p>
+</div>
+<!--introduce end-->
+
 <!--carousel start-->
-<div id="myCarousel" class="carousel slide" style="margin-top: 55px;margin-left: 200px;margin-right: 200px">
+<div id="myCarousel" class="carousel slide" style="margin-top: 10px;margin-left: 200px;margin-right: 200px">
    <!-- 轮播（Carousel）指标 -->
    <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -125,7 +137,7 @@
 <!--footer start-->
 <div id="foot" class="footer">
 	<p>
-Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "ch">ch</a>&nbsp;@ 2015.
+Create By &nbsp;<a href="http://github.com/ch710798472" target="_blank" tilte= "ch">ch yy</a>&nbsp;@ 2015 in SuZhou.
 </p>
 </div>
 <!--footer end-->
