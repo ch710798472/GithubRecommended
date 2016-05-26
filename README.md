@@ -14,7 +14,7 @@ python manage.py runserver 0.0.0.0:8000
 ```
 ####3.And then,open your browser with address of 127.0.0.1:8000
 
-###Deploy on your server:[see my blog](http://ch710798472.github.io/blog/java/2016/05/02/tx.html),see the result in [my web server](http://115.159.187.117)
+###Deploy on your server: [see my blog](http://ch710798472.github.io/blog/java/2016/05/02/tx.html), see the demo in [my web server](http://115.159.187.117)
 
 ####Notes: Your might install numpy,networkx,pygithub,pandas,ipython-notebook,d3py tools first when you attemp modify some files and compile it.
 Author by ch and yy in SuZhou,USTC SSE.
